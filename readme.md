@@ -22,7 +22,8 @@
 
 > NOTA: No se ha subido ningún fichero de datos al repositorio, porque pueden obtenerse ejecutando los propios scripts.
 
-> NOTA: La clasificación incorrecta de algunos documentos puede deberse a que no pertenezca a ninguna de las categorías catalogadas (ajedrez, beísbol...).
+> NOTA: La clasificación incorrecta de algunos documentos puede deberse a que no pertenezca a ninguna de las categorías catalogadas (ajedrez, béisbol...).
+
 
 ***
 # Script: descargar_noticias.py
@@ -93,6 +94,9 @@
 - Este script lee documentos de noticias sin clasificar y aplica el clasificador para intentar determinar a qué categoría pertenece.
 
     ![EjemploClasificacion](images/ejemplo_clasificacion.png)
+
+- Se adjunta el fichero _out_clasificados.txt_ con el resultado de la clasificación de 300 noticias que no han formado parte del entrenamiento del clasificador.
+
 
 - Algunos ejemplos de clasificación:
 
