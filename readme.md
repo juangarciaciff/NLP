@@ -20,6 +20,8 @@
 3. entrenar_clasificador.py
 4. clasificar_documentos.py
 
+> NOTA: No se ha subido ningún fichero de datos porque pueden obtenerse con los propios scripts.
+> NOTA: La clasificación incorrecta de algún documento puede deberse a que pertenezca a una categoría no contemplada (ajedrez, beísbol...)
 
 ***
 # Script: descargar_noticias.py
