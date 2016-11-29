@@ -96,7 +96,7 @@ if __name__ == '__main__':
     sys.stdout.write("\nINFO: Clasificando noticias pendientes de clasificación\n")
     lista_ficheros_test = pl.getListaFicheros('./elmundo/deportes/sinclasificar/', ext = '.json')
     f = open('out_clasificados.txt', 'w')
-    for fichero in lista_ficheros_test[:100]: # ¡¡¡ SOLO 20 !!!    
+    for fichero in lista_ficheros_test[:300]: # ¡¡¡ SOLO las 300 primeras !!!    
 
         # Carga el JSON de un fichero
         obj = pl.getJsonFromFile(fichero)
