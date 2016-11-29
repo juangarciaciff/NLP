@@ -1,9 +1,9 @@
-***
 # CLASIFICADOR DE DOCUMENTOS
 - Autor: Juan Antonio García Cuevas
 - Fecha: noviembre 2016
 ***
 
+## Descripción:
 **Conjunto de scripts que permiten descargar un conjunto de documentos de internet, generar un corpus y crear y entrenar un clasificador de noticas**:
 
 - descargar_noticias.py
@@ -11,6 +11,15 @@
 - entrenar_clasificador.py
 - clasificar_documentos.py
 - pylib.py
+
+## Ejecución:
+**Ejecutar los 4 primeros scripts anteriores en orden de aparición**:
+
+1. descargar_noticias.py
+2. generar_corpus.py
+3. entrenar_clasificador.py
+4. clasificar_documentos.py
+
 
 ***
 # Script: descargar_noticias.py
@@ -20,16 +29,12 @@
     - Directorio de grabación: _./elmundo/deportes/_
     - Formato de ficheros grabados en disco: _JSON_
 
-- Del docuemnto HTML de cada noticia descargada se extrae la siguiente información:
+- Del docuemnto HTML de cada noticia descargada se extrae, entre otra, la siguiente información:
     - título
     - sumario
-    - autor
-    - empleo del autor
-    - localización
-    - fecha y hora
     - texto de la noticia
     - keywords
-    - url
+    - ...
 
 - A cada noticia descargada se asigna un categoría, extraída de de las keywords del documento HTML original. Las categorías tratadas son las siguientes:
     - FUTBOL
@@ -57,14 +62,13 @@
     - Se reemplazan las letras acentuadas
     - Se eliminan los signos de puntuación
     - Se eliminan los tokens numéricos
-    - Se eliminan los espacios repetidos
     - Se eliminan las stop words
     - Se eliminan los tokens que no contengan al menos una letra
     - Se reducen los tokens a su raíz mediante el algoritmo Snowball
 
 - Por cada noticia se genera un fichero TXT en el directorio _./mycorpus_, con la lista de tokens resultantes y la categoría a la que pertenece. El nombre del fichero contiene al inicio el identificador de la categoría a la que pertenece.
 
-- Durante este proceso, las noticias a las que no se ha podido asignar una categoría a través de los keywords, se mueven al directorio _./elmundo/deportes/sinclasificar/_, para poder ser clasificadas posteriormente una vez obtenido un clasificador.
+- Durante este proceso, las noticias a las que no se ha podido asignar una categoría a través de los keywords, se mueven al directorio _./elmundo/deportes/sinclasificar/_, para poder ser clasificadas posteriormente una vez obtenido el clasificador.
 
     ![Corpus inicio](images/corpus1.png)
     ![Corpus fin](images/corpus2.png)
@@ -74,7 +78,7 @@
 
 - Este script crea y entrena un clasificador de documentos a partir del corpus previamente generado y guardado en disco por el script anterior (_generar_corpus.py_).
 
-- Se ha utilizado un clasificador ballesiano ingenuo (NaiveBayesClassifier), un clasificador de aprendizaje supervisado (deduce una función a partir de datos de entrenamiento, como ejemplos ya clasificados) que, dado un nuevo ejemplo, nos permite cuantificar la probabilidad de ocurrencia de una hipótesis.
+- Se ha utilizado un clasificador bayesiano ingenuo (NaiveBayesClassifier), un clasificador de aprendizaje supervisado (deduce una función a partir de datos de entrenamiento, como ejemplos ya clasificados) que, dado un nuevo ejemplo, nos permite cuantificar la probabilidad de ocurrencia de una hipótesis.
 
 - El clasificador entrenado es almacenado en disco en el fichero _my_classifier.pickle_.
 
