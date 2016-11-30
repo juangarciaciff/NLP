@@ -1,4 +1,4 @@
-# CLASIFICADOR DE DOCUMENTOS
+# CLASIFICADOR DE DOCUMENTOS (NLP con Python y NLTK)
 - Autor: Juan Antonio García Cuevas
 - Fecha: noviembre 2016
 ***
