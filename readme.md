@@ -24,7 +24,7 @@
 
 > NOTA: La clasificación incorrecta de algunos documentos puede deberse a que no pertenezca a ninguna de las categorías catalogadas (ajedrez, béisbol...).
 
-Las pruebas se han realizado con un conjunto de documentos de unas 10.000 noticias.
+> NOTA: El entrenamiento del clasificador se ha realizado con más de 7.000 noticias.
 
 ***
 # Script: descargar_noticias.py
@@ -96,10 +96,10 @@ Las pruebas se han realizado con un conjunto de documentos de unas 10.000 notici
 
     ![EjemploClasificacion](images/ejemplo_clasificacion.png)
 
-- Se adjunta el fichero _out_clasificados.txt_ con el resultado de la clasificación de 300 noticias que no han formado parte del entrenamiento del clasificador.
+- Se adjunta el fichero _out_clasificados.txt_ con el resultado de la clasificación de unas 300 noticias que no han formado parte del entrenamiento del clasificador.
 
 
-- Algunos ejemplos de clasificación:
+- Aquí se muestran algunos ejemplos de clasificación:
 
 ```
 === FUTBOL ============================
