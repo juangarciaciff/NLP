@@ -56,7 +56,7 @@ def extract_features(document):
 ### Inicio de proceso
 ########################################################################################################################
 if __name__ == '__main__':
-
+    
     sys.stdout.write("\n==============================================================================================\n")
     sys.stdout.write("== Clasifica noticias deportivas.\n")
     sys.stdout.write("==============================================================================================\n\n")
@@ -96,32 +96,43 @@ if __name__ == '__main__':
     sys.stdout.write("\nINFO: Clasificando noticias pendientes de clasificación\n")
     lista_ficheros_test = pl.getListaFicheros('./elmundo/deportes/sinclasificar/', ext = '.json')
     f = open('out_clasificados.txt', 'w')
-    for fichero in lista_ficheros_test[:300]: # ¡¡¡ SOLO las 300 primeras !!!    
+    cont_futbol = 0
+    for fichero in lista_ficheros_test:
 
         # Carga el JSON de un fichero
         obj = pl.getJsonFromFile(fichero)
         if obj == None:
             continue
-    
+
         title = pl.getProperty(obj, 'title')
         summary = pl.getProperty(obj, 'summary')
         content = pl.getProperty(obj, 'content')
         keywords = pl.getProperty(obj, 'keywords')
 
         texto = pl.limpiarTexto(title + '\n\n' + summary + '\n\n' + content)
+
+        # Obtiene la categoría de la noticia
         categoria = classifier.classify(extract_features(texto.split()))
-        
+
+        # Obtiene la distribución de probabilidades por categoría
+        distribucion = classifier.prob_classify(extract_features(texto.split()))
+        categorias = list(distribucion.samples())
+
         print '\n===', categoria, '============================'
         print '- keywords:', keywords.encode('utf-8')
         print '- fichero.:', fichero.encode('utf-8')
         print '- titulo..:', title.encode('utf-8')
         print '- summary.:', summary.encode('utf-8')
-    
-        f.write('\n=== ' + categoria + ' ============================\n')
-        f.write('- keywords: ' + keywords.encode('utf-8') + '\n')
-        f.write('- fichero.: ' + fichero.encode('utf-8') + '\n')
-        f.write('- titulo..: ' + title.encode('utf-8') + '\n')
-        f.write('- summary.: ' + summary.encode('utf-8') + '\n')
+        for item in categorias:
+            print '- Probabilidad de %-20s: %10s' % (item, distribucion.prob(item))
+            
+        f.write('\n=== %s ============================\n' % (categoria))
+        f.write('- keywords: %s\n' % (keywords.encode('utf-8')))
+        f.write('- fichero.: %s\n' % (fichero.encode('utf-8')))
+        f.write('- titulo..: %s\n' % (title.encode('utf-8')))
+        f.write('- summary.: %s\n' % (summary.encode('utf-8')))
+        for item in categorias:
+            f.write('- Probabilidad de %-20s: %10s\n' % (item, distribucion.prob(item)))
     
     f.close()    
     
